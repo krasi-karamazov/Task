@@ -8,4 +8,9 @@
     <string name="nav_title_employees">Employees</string>
     <string name="nav_title_managers">Managers</string>
     <string name="nav_title_workers">Workers</string>
+    <string name="points_string_worker">Score</string>
+    <string name="points_string_manager">Subordinates</string>
+    <string name="employees_details_string">You have selected all employees.</string>
+    <string name="managers_details_string">You have selected managers.</string>
+    <string name="workers_details_string">You have selected workers.</string>
 </resources>

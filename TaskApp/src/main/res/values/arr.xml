@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string-array name="nav_titles">
-        <item>@string/nav_title_employees</item>
-        <item>@string/nav_title_managers</item>
-        <item>@string/nav_title_workers</item>
-    </string-array>
-</resources>

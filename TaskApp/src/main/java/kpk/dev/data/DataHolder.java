@@ -6,30 +6,29 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import kpk.dev.models.EmployeeDecorator;
 import kpk.dev.models.Manager;
 import kpk.dev.models.Worker;
 import kpk.dev.utils.Constants;
 import kpk.dev.utils.PersonGenerator;
 
-/**
- * Created by krasimirkaramazov on 3/16/14.
- */
 public class DataHolder {
 
     private static DataHolder sInstance;
-    private Map<Manager, List<Worker>> mStaff;
+    private static Map<Manager, List<EmployeeDecorator>> mStaff;
 
 
     private DataHolder() {
-        mStaff = new HashMap<Manager, List<Worker>>();
+        mStaff = new HashMap<Manager, List<EmployeeDecorator>>();
         for(int i = 0; i < Constants.NUM_MANAGERS; i++) {
             Manager manager = new Manager(PersonGenerator.generatePerson());
             int workersForManager = PersonGenerator.generateNumSubordinates();
-            List<Worker> workers = new ArrayList<Worker>();
+            manager.setNumberOfSubordinates(workersForManager);
+            List<EmployeeDecorator> workers = new ArrayList<EmployeeDecorator>();
             for(int j = 0; j < workersForManager; j++) {
                 Worker worker = new Worker(PersonGenerator.generatePerson());
                 worker.setPoints(PersonGenerator.generateEmployeeScore());
-                manager.addSubordinate(worker);
+                workers.add(worker);
             }
             mStaff.put(manager, workers);
         }
@@ -42,11 +41,11 @@ public class DataHolder {
         return sInstance;
     }
 
-    public List<Worker> getAllWorkers() {
-        final List<Worker> allWorkers = new ArrayList<Worker>();
-        final Set<Map.Entry<Manager, List<Worker>>> entries = mStaff.entrySet();
-        for(Map.Entry<Manager, List<Worker>> entry : entries){
-            List<Worker> workers = entry.getValue();
+    public List<EmployeeDecorator> getAllWorkers() {
+        final List<EmployeeDecorator> allWorkers = new ArrayList<EmployeeDecorator>();
+        final Set<Map.Entry<Manager, List<EmployeeDecorator>>> entries = mStaff.entrySet();
+        for(Map.Entry<Manager, List<EmployeeDecorator>> entry : entries){
+            List<EmployeeDecorator> workers = entry.getValue();
             if(workers.size() > 0) {
                 allWorkers.addAll(workers);
             }
@@ -54,13 +53,20 @@ public class DataHolder {
         return allWorkers;
     }
 
-    public List<Worker> getWorkersForManager(Manager manager) {
+    public List<EmployeeDecorator> getWorkersForManager(Manager manager) {
         return mStaff.get(manager);
     }
 
-    public List<Manager> getManagers() {
-        final List<Manager> managers = new ArrayList<Manager>();
+    public List<EmployeeDecorator> getManagers() {
+        final List<EmployeeDecorator> managers = new ArrayList<EmployeeDecorator>();
         managers.addAll(mStaff.keySet());
         return managers;
+    }
+
+    public List<EmployeeDecorator> getAllEmployees() {
+        final List<EmployeeDecorator> allEmployes = new ArrayList<EmployeeDecorator>();
+        allEmployes.addAll(getManagers());
+        allEmployes.addAll(getAllWorkers());
+        return allEmployes;
     }
 }

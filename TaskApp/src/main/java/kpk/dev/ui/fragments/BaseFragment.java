@@ -6,9 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * Created by krasimir.karamazov on 3/14/14.
- */
 public abstract class BaseFragment extends Fragment {
 
 
@@ -18,7 +15,6 @@ public abstract class BaseFragment extends Fragment {
         initComponents(rootView);
         return rootView;
     }
-
 
     protected abstract int getLayout();
     protected abstract void initComponents(View rootView);

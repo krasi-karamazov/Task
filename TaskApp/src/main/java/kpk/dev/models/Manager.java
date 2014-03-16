@@ -1,26 +1,21 @@
 package kpk.dev.models;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by krasimir.karamazov on 3/14/14.
  */
 public class Manager extends EmployeeDecorator {
 
-    private List<IPerson> mNumberOfSubordinates;
-
+    private int mNumberSubbordinates = 0;
     public Manager(Person person) {
         super(person);
-        mNumberOfSubordinates = new ArrayList<IPerson>();
     }
 
-    public void addSubordinate(Worker worker) {
-        mNumberOfSubordinates.add(worker);
+    public void setNumberOfSubordinates(int numSubordinates) {
+        mNumberSubbordinates = numSubordinates;
     }
 
-    public void addSubordinates(List<Worker> workers) {
-        mNumberOfSubordinates.addAll(workers);
+    public int getNumberOfSubordinates() {
+        return mNumberSubbordinates;
     }
 
     @Override
@@ -29,7 +24,7 @@ public class Manager extends EmployeeDecorator {
         builder.append(getFirstName());
         builder.append(" ");
         boolean toColor = false;
-        if(getNumberOfSubordinates() > 20){
+        if(mNumberSubbordinates > 20){
             builder.append("<font color='#00FF00'>");
             toColor = true;
         }
@@ -40,11 +35,6 @@ public class Manager extends EmployeeDecorator {
             builder.append("</font>");
         }
 
-
         return builder.toString();
-    }
-
-    public int getNumberOfSubordinates() {
-        return mNumberOfSubordinates.size();
     }
 }
