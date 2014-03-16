@@ -8,12 +8,11 @@ import java.util.List;
  */
 public class Manager extends EmployeeDecorator {
 
-    private List<EmployeeDecorator> mNumberOfSubordinates;
+    private List<IPerson> mNumberOfSubordinates;
 
     public Manager(Person person) {
         super(person);
-        mNumberOfSubordinates = new ArrayList<EmployeeDecorator>();
-        mNumberOfSubordinates.add()
+        mNumberOfSubordinates = new ArrayList<IPerson>();
     }
 
     public void addSubordinate(Worker worker) {
@@ -25,8 +24,24 @@ public class Manager extends EmployeeDecorator {
     }
 
     @Override
-    public String getFormattedName() {
-        return null;
+    public String getHTMLFormattedName() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getFirstName());
+        builder.append(" ");
+        boolean toColor = false;
+        if(getNumberOfSubordinates() > 20){
+            builder.append("<font color='#00FF00'>");
+            toColor = true;
+        }
+
+        builder.append(getLastName());
+
+        if(toColor){
+            builder.append("</font>");
+        }
+
+
+        return builder.toString();
     }
 
     public int getNumberOfSubordinates() {

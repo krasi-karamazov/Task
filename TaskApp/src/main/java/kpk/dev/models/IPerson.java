@@ -9,4 +9,5 @@ public interface IPerson {
     public String getFirstName();
     public void setLastName(String lastName);
     public String getLastName();
+    public String getReadableData();
 }

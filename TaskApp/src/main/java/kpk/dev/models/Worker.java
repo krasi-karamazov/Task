@@ -12,8 +12,24 @@ public class Worker extends EmployeeDecorator {
     }
 
     @Override
-    public String getFormattedName() {
-        return null;
+    public String getHTMLFormattedName() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getFirstName());
+        builder.append(" ");
+        boolean toColor = false;
+        if(mPoints < 2.8){
+            builder.append("<font color='#FF0000'>");
+            toColor = true;
+        }
+
+        builder.append(getLastName());
+
+        if(toColor){
+            builder.append("</font>");
+        }
+
+
+        return builder.toString();
     }
 
     public double getPoints() {
@@ -22,5 +38,13 @@ public class Worker extends EmployeeDecorator {
 
     public void setPoints(double points) {
         this.mPoints = points;
+    }
+
+    @Override
+    public String getReadableData() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(" Points:");
+        builder.append(mPoints);
+        return builder.toString();
     }
 }

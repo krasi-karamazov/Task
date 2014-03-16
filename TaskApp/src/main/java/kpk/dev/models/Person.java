@@ -25,4 +25,18 @@ public class Person implements IPerson {
     public String getLastName() {
         return mLastName;
     }
+
+    @Override
+    public String getReadableData() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append("First name:");
+        builder.append(mFirstName);
+        builder.append(" First name length:");
+        builder.append(mFirstName.length());
+        builder.append(" Last name:");
+        builder.append(mLastName);
+        builder.append(" Last name length:");
+        builder.append(mLastName.length());
+        return builder.toString();
+    }
 }

@@ -31,5 +31,10 @@ public abstract class EmployeeDecorator implements IPerson{
         return  mPerson.getLastName();
     }
 
-    public abstract String getFormattedName();
+    public abstract String getHTMLFormattedName();
+
+    @Override
+    public String getReadableData() {
+        return mPerson.getReadableData();
+    }
 }
